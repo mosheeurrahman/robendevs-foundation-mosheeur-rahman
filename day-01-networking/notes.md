@@ -102,13 +102,13 @@ The Physical layer sends raw bits through a physical or wireless medium. It deal
 - Specifies cables, connectors, frequencies and data rates.
 - Describes the physical connection between devices.
 
-# HTTP, Cookies, Web Caching, Proxy Servers, CDNs, and HTTPS
+# HTTP, Cookies, Web Caching, Proxy Servers, CDNs and HTTPS
 
 ## 1. What Is HTTP?
 
 **HTTP (Hypertext Transfer Protocol)** is an application-layer protocol. It defines how a client and a server communicate on the Web.
 
-A client is usually a web browser. A server stores or creates resources such as HTML pages, images, videos, and API data.
+A client is usually a web browser. A server stores or creates resources such as HTML pages, images, videos and API data.
 
 HTTP follows a **request-response model**:
 
@@ -117,20 +117,18 @@ HTTP follows a **request-response model**:
 3. The server sends an HTTP response.
 4. The browser processes the response and displays or uses the returned data.
 
-HTTP is **stateless**. Each request is independent. The protocol does not automatically remember what happened in a previous request. Cookies and other application mechanisms are used when a website needs to remember a user or a session.
-
-HTTP is an application-layer protocol. It commonly uses TCP as its transport with HTTP/1.1 and HTTP/2. HTTP/3 uses QUIC, which runs over UDP. HTTPS means HTTP communication protected by TLS.
+HTTP is **stateless**. The protocol does not automatically remember what happened in a previous request. Cookies and other application mechanisms are used when a website needs to remember a user or a session. It is an application-layer protocol which commonly uses **TCP** as its transport with HTTP/1.1 and HTTP/2. HTTP/3 uses QUIC which runs over **UDP**. **HTTPS** means HTTP communication protected by TLS.
 
 ---
 
 ## 2. Understanding a Web URL
 
-A **URL (Uniform Resource Locator)** identifies where a resource can be found and how it should be accessed.
+A **URL identifies where a resource can be found and how it should be accessed.
 
-Consider this example:
+for xample:
 
 ```text
-https://www.example.com:443/products/laptop.html?color=black#reviews
+https://www.robendevs.com:443/products/laptop.html?color=black#reviews
 ```
 
 The URL contains several parts.
@@ -141,9 +139,9 @@ The URL contains several parts.
 |---|---|---|
 | Scheme / protocol | `https` | Tells the browser which protocol to use. |
 | Subdomain | `www` | A name used under the main domain. It is optional. |
-| Domain name | `example.com` | The registered domain name in this example. |
+| Domain name | `robendevs.com` | The registered domain name in this example. |
 | Top-level domain (TLD) | `.com` | The final domain label. |
-| Hostname | `www.example.com` | The complete DNS name used to identify the host. |
+| Hostname | `www.robendevs.com` | The complete DNS name used to identify the host. |
 | Port | `443` | The network port used by the service. |
 | Path | `/products/laptop.html` | Identifies the resource or route on the server. |
 | File-like name | `laptop.html` | The final path segment. It looks like a file name. |
@@ -162,108 +160,6 @@ Examples:
 
 For normal web browsing, the default port is usually `80` for HTTP and `443` for HTTPS. A URL can specify another port explicitly.
 
-### 2.3 Hostname, Domain Name, and Subdomain
-
-The **hostname** identifies the host that the browser wants to contact. It may be a DNS name or an IP address.
-
-In `www.example.com`:
-
-- `www` is a subdomain label.
-- `example` is the domain label in this example.
-- `.com` is the top-level domain.
-- `www.example.com` is the complete hostname.
-
-The word **domain** is sometimes used loosely to mean the complete name. In DNS terminology, a domain can contain several labels and subdomains.
-
-The browser uses DNS to resolve a hostname such as `www.example.com` to an IP address. The browser then connects to the server using that IP address and the required port.
-
-### 2.4 Top-Level Domain (TLD)
-
-A TLD is the final label of a domain name.
-
-Examples:
-
-- `.com` — commonly used by commercial organizations.
-- `.org` — commonly used by organizations.
-- `.net` — originally intended for network-related organizations.
-- `.edu` — used by eligible educational institutions in some registration systems.
-- `.gov` — used by government organizations under the applicable registration rules.
-- `.bd` — Bangladesh's country-code top-level domain.
-
-A TLD does not prove that a website is safe or trustworthy.
-
-### 2.5 Port
-
-A port identifies the service endpoint on a host.
-
-Common web ports are:
-
-- HTTP: `80`
-- HTTPS: `443`
-
-For example, `https://example.com:8443/` asks the browser to connect to port `8443` instead of the default HTTPS port.
-
-### 2.6 Path and File
-
-The path identifies the requested resource or route on the server.
-
-In this example:
-
-```text
-/products/laptop.html
-```
-
-- `/products/` is a path segment.
-- `laptop.html` is the final path segment. It looks like a file name.
-
-A URL path does **not** prove that a real file exists on the server. Many websites use application routes. The server may generate a page dynamically from a database or application code.
-
-### 2.7 Query String
-
-A query string starts with `?`.
-
-Example:
-
-```text
-/search?q=networking&page=2
-```
-
-Here:
-
-- `q=networking` is one parameter.
-- `page=2` is another parameter.
-- `&` separates parameters.
-
-Query parameters commonly carry search terms, filters, sorting options, or page numbers. Sensitive information should not normally be placed in a URL because URLs may appear in browser history, logs, analytics, and referrer information.
-
-### 2.8 Fragment
-
-A fragment starts with `#`.
-
-Example:
-
-```text
-https://example.com/guide#cookies
-```
-
-The fragment may tell the browser to jump to the `cookies` section of the page. The fragment is handled by the browser and is **not sent as part of the HTTP request target**.
-
-### 2.9 Origin
-
-An origin is the combination of:
-
-```text
-scheme + hostname + port
-```
-
-For example:
-
-```text
-https://www.example.com:443
-```
-
-The browser uses origins for important security rules. Two pages with different schemes, hostnames, or ports have different origins. A **same-site** relationship is not always the same as a **same-origin** relationship. For example, two subdomains can be same-site but still have different origins.
-
 ---
 
 ## 3. HTTP Message Types
@@ -272,10 +168,6 @@ HTTP communication uses two main message types:
 
 1. **HTTP Request Message** — sent by a client to a server.
 2. **HTTP Response Message** — sent by a server to a client.
-
-A browser may send many requests to load one page. For example, it may request the HTML document first, then request CSS files, JavaScript files, images, fonts, and other resources.
-
-> **Important:** The readable examples in the next sections show the HTTP/1.1 message format. HTTP/2 and HTTP/3 carry the same HTTP meaning using binary framing. They are not simply plain-text HTTP/1.1 messages with a different version number.
 
 ## 4. HTTP Request Message
 
@@ -295,8 +187,8 @@ Optional request body
 
 It contains four main parts:
 
-1. **Request line** — contains the method, request target, and HTTP version.
-2. **Headers** — provide extra information about the request, client, accepted formats, authentication, and other details.
+1. **Request line** — contains the method, request target and HTTP version.
+2. **Headers** — provide extra information about the request, client, accepted formats, authentication and other details.
 3. **Blank line** — separates the headers from the message body.
 4. **Message body** — optional data sent to the server.
 
@@ -304,7 +196,7 @@ It contains four main parts:
 
 ```http
 GET /products/42 HTTP/1.1
-Host: www.example.com
+Host: www.robendevs.com
 User-Agent: Mozilla/5.0
 Accept: text/html
 Accept-Language: en-US,en;q=0.9
@@ -333,7 +225,7 @@ Content-Type: application/json
 Accept: application/json
 Content-Length: 42
 
-{"name":"Alex","email":"alex@example.com"}
+{"name":"Alex","email":"alex@robendevs.com"}
 ```
 
 Explanation:
@@ -342,8 +234,6 @@ Explanation:
 - `Content-Type` describes the format of the request body.
 - `Content-Length` gives the body size in bytes when this framing is used.
 - The JSON data is the request body.
-
-The exact headers in a real request depend on the browser, application, and HTTP version.
 
 ---
 
@@ -383,16 +273,6 @@ Examples:
 - `POST` is not generally idempotent. Repeating it may create multiple records or perform an action more than once.
 
 Idempotency does not mean that every response must be identical. For example, a second `DELETE` request may return `404` after the first one deleted the resource.
-
-### 5.3 Safe, Idempotent, and Cacheable Are Different
-
-These terms describe different properties:
-
-- **Safe:** Does the client request a change to server state?
-- **Idempotent:** Does repeating the request have the same intended effect?
-- **Cacheable:** May a response be stored and reused under HTTP caching rules?
-
-Do not treat these properties as synonyms. For example, `PUT` is idempotent but not safe. `POST` is not generally idempotent, although some POST responses can be cached under specific conditions.
 
 ---
 
@@ -557,8 +437,7 @@ A cookie usually contains a name and a value. It may also have attributes that c
 | Term | Meaning |
 |---|---|
 | Cookie | The small name-value data item and its associated attributes. |
-| Cookie jar | The browser-managed collection of cookies. |
-| Cookie store / cookie database | The browser's internal storage for cookie records. |
+|cookie database | The browser's internal storage for cookie records. |
 | First-party cookie | A cookie associated with the site the user is visiting. |
 | Third-party cookie | A cookie associated with a different site whose content is used by the current page. |
 | Session cookie | A cookie without an explicit expiry time. |
@@ -611,403 +490,16 @@ Important points:
 
 - The server uses `Set-Cookie` to ask the browser to store or update a cookie.
 - The browser uses `Cookie` to send matching cookie name-value pairs to the server.
-- Cookie attributes such as `Secure`, `HttpOnly`, and `SameSite` are not repeated in the `Cookie` request header.
-- A browser does not send every cookie to every website. It selects cookies based on their scope, security requirements, expiry, and request context.
+- Cookie attributes such as `Secure`, `HttpOnly` and `SameSite` are not repeated in the `Cookie` request header.
+- A browser does not send every cookie to every website. It selects cookies based on their scope, security requirements, expiry and request context.
 - Each cookie should normally be set with its own `Set-Cookie` response header. Do not combine multiple cookies into one comma-separated `Set-Cookie` header.
-
-### 8.5 Cookie Attributes
-
-Attributes control how a cookie is stored and sent.
-
-#### `Domain`
-
-`Domain` controls which hosts can receive a cookie.
-
-```http
-Set-Cookie: user_id=42; Domain=example.com
-```
-
-This can make the cookie available to `example.com` and its subdomains, subject to browser rules.
-
-If `Domain` is omitted, the cookie is normally **host-only**. It is sent only to the host that set it, not automatically to its subdomains.
-
-A server cannot set a cookie for an unrelated domain. Browsers also apply public-suffix protections to prevent cookies from being set for top-level public suffixes such as `.com`.
-
-#### `Path`
-
-`Path` limits the URL paths for which the browser sends a cookie.
-
-```http
-Set-Cookie: cart_id=xyz; Path=/shop
-```
-
-The cookie can be sent for matching paths such as `/shop` and `/shop/items`.
-
-`Path` is a sending rule. It is not a strong security boundary between applications on the same host.
-
-#### `Expires`
-
-`Expires` gives a specific expiry date and time.
-
-```http
-Set-Cookie: preference=dark; Expires=Wed, 01 Dec 2027 12:00:00 GMT
-```
-
-The browser should stop sending the cookie after it expires.
-
-#### `Max-Age`
-
-`Max-Age` gives the cookie lifetime in seconds.
-
-```http
-Set-Cookie: preference=dark; Max-Age=604800
-```
-
-This example requests a lifetime of seven days.
-
-If both `Max-Age` and `Expires` are present, `Max-Age` takes priority in browsers that follow the standard behavior.
-
-#### `Secure`
-
-```http
-Set-Cookie: session_id=abc123; Secure
-```
-
-A `Secure` cookie is sent only over secure connections, normally HTTPS. This reduces the risk of the cookie being exposed over unencrypted HTTP.
-
-`Secure` does not protect a cookie from malware or someone who can access the browser's data on the device. It also does not replace `HttpOnly`.
-
-#### `HttpOnly`
-
-```http
-Set-Cookie: session_id=abc123; HttpOnly
-```
-
-`HttpOnly` prevents normal page JavaScript from reading the cookie through APIs such as `document.cookie`.
-
-The browser can still attach the cookie to matching HTTP requests. This helps reduce the risk of session-cookie theft through some cross-site scripting (XSS) attacks.
-
-`HttpOnly` does not stop an XSS attack from performing actions on the page as the user. It only blocks JavaScript from reading the cookie value through the normal cookie API.
-
-#### `SameSite`
-
-`SameSite` controls whether a cookie is sent in cross-site request situations. It helps protect privacy and reduces some cross-site request forgery (CSRF) risks.
-
-The three common values are:
-
-| Value | Behavior |
-|---|---|
-| `Strict` | Sends the cookie only in same-site contexts. It provides the strongest cross-site restriction. |
-| `Lax` | Allows the cookie in same-site requests and certain top-level cross-site navigations. It blocks many other cross-site uses. |
-| `None` | Allows the cookie in cross-site contexts. It must also have the `Secure` attribute. |
-
-Examples:
-
-```http
-Set-Cookie: session_id=abc123; SameSite=Strict; Secure; HttpOnly
-Set-Cookie: preference=light; SameSite=Lax; Secure
-Set-Cookie: embedded_session=xyz; SameSite=None; Secure; HttpOnly
-```
-
-For a normal first-party login cookie, `Lax` is often a practical starting point. Some applications need `Strict` or `None` depending on how their sign-in and embedded content work.
-
-Do not rely on a browser's default. Set `SameSite` explicitly. Defaults and third-party-cookie policies can differ between browsers and can change over time.
-
-#### `Partitioned`
-
-```http
-Set-Cookie: widget_id=abc; Secure; SameSite=None; Partitioned
-```
-
-`Partitioned` is used for **partitioned cookies**, including the CHIPS mechanism supported by browsers that implement it.
-
-A partitioned cookie is stored separately for different top-level sites. For example, an embedded widget may have a separate cookie when it is included on Site A and Site B. This limits cross-site tracking while allowing some embedded services to keep the state they need.
-
-Partitioned cookies require `Secure`. Browser support and policy details should be checked for the target browsers.
-
-#### Cookie Prefixes
-
-Some browsers enforce additional rules for cookie names with special prefixes:
-
-- `__Secure-` requires the cookie to be set from a secure context with the `Secure` attribute.
-- `__Host-` has stricter rules. It requires a secure context, `Secure`, `Path=/`, and no `Domain` attribute.
-
-Example:
-
-```http
-Set-Cookie: __Host-session=abc123; Secure; HttpOnly; Path=/; SameSite=Lax
-```
-
-These prefixes help prevent some unsafe cookie configurations.
-
-### 8.6 Session Cookies and Persistent Cookies
-
-**Session cookies** do not have an `Expires` or `Max-Age` attribute. They are intended to last for the current browser session.
-
-**Persistent cookies** have an expiry time or lifetime. They can remain after the browser is closed and reopened, until they expire or are removed.
-
-The meaning of a browser session is browser-dependent. A browser that restores previous sessions may preserve some session cookies after a restart. Private browsing, browser cleanup settings, and user privacy settings can also affect cookie lifetime.
-
-A website can remove a cookie by setting the same cookie name and scope again with an expiry in the past or a `Max-Age` of zero.
-
-```http
-Set-Cookie: session_id=; Path=/; Max-Age=0; Secure; HttpOnly; SameSite=Lax
-```
-
-To remove a cookie reliably, the deletion response must use the matching cookie scope, especially its name, path, and domain setting.
-
-### 8.7 First-Party and Third-Party Cookies
-
-A **first-party cookie** belongs to the site the user is directly visiting.
-
-Example:
-
-- The user visits `https://shop.example.com`.
-- The shop sets a cookie for its own site.
-- The browser sends the cookie on later matching requests to the shop.
-
-A **third-party cookie** is associated with a different site that is included in the page.
-
-Example:
-
-- The user visits `https://news.example`.
-- The page loads an advertisement or analytics resource from `https://ad-network.example`.
-- That external service may try to set or read a cookie in the context of the news page.
-
-Third-party cookies have been widely used for cross-site advertising, tracking, and embedded services. Modern browsers increasingly restrict or block them. The exact behavior depends on the browser, its version, settings, privacy mode, extensions, and cookie attributes.
-
-A site should not assume that third-party cookies will always be available. `SameSite=None; Secure` is required for a cookie intended to be sent in cross-site contexts, but browser privacy policies may still block it. Also remember that same-site and same-origin are different concepts.
-
-### 8.8 Cookie Database and Browser Storage
-
-Cookies are stored by the browser, not automatically in the website's database.
-
-The browser manages a **cookie store**, often called a cookie jar. It keeps cookie values and metadata. Conceptually, a cookie record may contain:
-
-| Field | Purpose |
-|---|---|
-| Name | Cookie name. |
-| Value | Cookie value. |
-| Domain / host | Which host or domain can receive it. |
-| Host-only flag | Whether it is limited to the exact host. |
-| Path | Which request paths can receive it. |
-| Expiry time | When it should stop being sent. |
-| Secure flag | Whether it is restricted to secure connections. |
-| HttpOnly flag | Whether normal JavaScript access is blocked. |
-| SameSite value | Cross-site sending policy. |
-| Partition key | Top-level site information for a partitioned cookie. |
-| Creation and access metadata | Information used by the browser to manage the cookie. |
-
-This table is a **conceptual model**. It is not a universal database schema.
-
-Browsers store profile data in different ways. For example:
-
-- Chromium-based browsers keep cookies inside the browser's user profile data.
-- Firefox documents a `cookies.sqlite` file in its profile.
-- The actual file name, database format, file location, encryption method, and cleanup behavior can vary by browser, operating system, and version. A browser may also keep some cookie information in memory while it is running. Browser privacy settings can limit cookie lifetimes or remove cookies before their requested expiry.
-
-Each browser profile normally has its own separate cookie store. Different browsers do not automatically share cookies. A normal profile and a private/incognito session also have separate handling.
-
-A user can usually view and remove cookies through browser settings. Developers can inspect cookies through the browser's Developer Tools, often under **Application** or **Storage**, and can inspect `Cookie` and `Set-Cookie` headers under **Network**.
-
-Do not edit the browser's cookie database directly. It is an internal browser data store. Changing it while the browser is running can corrupt data or cause unexpected behavior.
-
-### 8.9 Browser Cookie Store vs. Server Session Database
-
-These are two different things.
-
-**Browser cookie store:**
-
-- Exists on the user's device.
-- Stores cookie name-value pairs and attributes.
-- Sends matching cookies with requests.
-- Is controlled by the browser and user settings.
-
-**Server-side session database or session store:**
-
-- Exists on the server or in a server-side storage service.
-- Stores session information such as user ID, login state, expiry, and permissions.
-- Uses the session token from the browser cookie to find the matching session.
-- Can invalidate a session even when the browser still has the cookie.
-
-Example flow:
-
-```text
-Browser cookie store                  Server session store
----------------------                 --------------------
-session_id = random-token  -------->  random-token -> user 42
-                                      user 42 -> logged in
-```
-
-The token should be random and difficult to guess. The server should not trust a user ID or permission value simply because it appears in a client-controlled cookie.
-
-### 8.10 Cookie Limits and Performance
-
-Cookies are designed to store small values, not large files or application databases.
-
-- Browsers enforce limits on cookie size and the number of cookies.
-- The exact limits vary between browsers and may change.
-- A common practical limit is around 4 KB per cookie, but applications should not depend on one universal limit.
-- Cookies are attached to matching requests, so large or numerous cookies increase request-header size.
-- Large headers add network overhead and may exceed server or intermediary limits.
-- A cookie should contain only the data needed by the application. Large data is usually better stored in a server-side session or an appropriate browser storage API.
-
-### 8.11 Cookies vs. Local Storage and Session Storage
-
-Cookies are not the same as `localStorage` or `sessionStorage`.
-
-| Feature | Cookies | `localStorage` | `sessionStorage` |
-|---|---|---|---|
-| Automatically sent with matching HTTP requests | Yes | No | No |
-| Typical use | Session IDs, preferences, state sent to server | Client-side preferences and data | Temporary tab/session data |
-| Expiry | Session or explicit expiry | Usually remains until cleared | Usually limited to the tab's page session |
-| JavaScript access | Depends on `HttpOnly` | JavaScript can access it | JavaScript can access it |
-| Scope | Domain/host, path, and cookie rules | Origin | Origin and tab session |
-
-Do not store sensitive authentication tokens in JavaScript-accessible storage without carefully considering the XSS risk.
-
-### 8.12 Cookie Security Problems and Related Attacks
-
-Cookies often carry session identifiers. If an attacker steals or misuses a session cookie, the attacker may be able to act as the logged-in user.
-
-#### 1. Session Hijacking
-
-An attacker obtains a valid session cookie and reuses it to impersonate the user.
-
-Possible causes include:
-
-- Sending session cookies over unencrypted HTTP.
-- Malware or malicious browser extensions.
-- XSS that can read an unprotected cookie.
-- Leaked logs, backups, or browser profile data.
-- Phishing or unsafe device access.
-
-Defenses:
-
-- Use HTTPS everywhere.
-- Set `Secure` and `HttpOnly` on session cookies.
-- Use an appropriate `SameSite` policy.
-- Rotate session IDs after login and privilege changes.
-- Use short and reasonable session lifetimes.
-- Revoke sessions after logout, password changes, or suspicious activity.
-
-#### 2. Cross-Site Scripting (XSS)
-
-XSS happens when an attacker causes malicious JavaScript to run in a trusted website's context.
-
-If a session cookie is not `HttpOnly`, the script may read it and send it to the attacker.
-
-Defenses:
-
-- Set `HttpOnly` on sensitive cookies.
-- Escape output and validate input correctly.
-- Use a Content Security Policy (CSP) where appropriate.
-- Keep libraries and application code secure.
-
-`HttpOnly` is not a complete XSS defense. A script that runs on the page may still perform actions as the user even if it cannot read the cookie.
-
-#### 3. Cross-Site Request Forgery (CSRF)
-
-CSRF tricks a browser into sending an unwanted request to a website where the user is already authenticated.
-
-The browser may automatically attach the site's cookie. The server might then mistake the request for an action intentionally made by the user.
-
-Defenses:
-
-- Use `SameSite=Lax` or `SameSite=Strict` where the application allows it.
-- Use CSRF tokens for state-changing requests.
-- Check the `Origin` header, and use other request-context checks where appropriate.
-- Do not use `GET` for state-changing actions.
-- Require re-authentication for highly sensitive actions.
-
-`SameSite` helps, but it should not be the only CSRF defense for sensitive applications.
-
-#### 4. Session Fixation
-
-An attacker tries to make a victim use a session ID already known to the attacker. If the victim logs in without receiving a new session ID, the attacker may reuse the known ID.
-
-Defenses:
-
-- Generate a new session ID after successful login.
-- Regenerate it after privilege changes.
-- Reject untrusted session identifiers.
-
-#### 5. Cookie Tossing and Domain Scope Problems
-
-A subdomain or an unsafe application may set a cookie for a parent domain. This can cause another application on the same domain to receive an unexpected cookie with the same name.
-
-Defenses:
-
-- Avoid broad `Domain` attributes when they are not needed.
-- Prefer host-only cookies for sensitive sessions.
-- Use the `__Host-` prefix where suitable.
-- Use unique cookie names and carefully control subdomains.
-
-#### 6. Cookie Theft from a Device
-
-Someone with access to the device, browser profile, malware, or a compromised extension may obtain cookie data.
-
-Defenses:
-
-- Keep the operating system and browser updated.
-- Avoid untrusted extensions and software.
-- Protect the user account and device.
-- Use short session lifetimes and server-side session revocation.
-
-`Secure` and `HttpOnly` do not protect against every form of local device compromise.
-
-#### 7. Privacy Tracking
-
-Advertising and analytics companies may use cookies to recognize a browser across sites. This can create detailed browsing profiles.
-
-Defenses and controls include:
-
-- Browser tracking protection.
-- Blocking or limiting third-party cookies.
-- Clearing cookies and site data.
-- Using privacy settings and extensions from trusted sources.
-- Applying consent and data-protection rules where required.
-
-#### 8. Stale or Incorrect Cookies
-
-Old cookies can cause login problems, incorrect preferences, or conflicts after a website changes its session system.
-
-Possible solutions:
-
-- Clear the affected site's cookies.
-- Sign out and sign in again.
-- Check cookie expiry and scope.
-- Ensure the server uses consistent cookie names and attributes.
-
-### 8.13 Important Cookie Best Practices
-
-For a sensitive login/session cookie, a common secure pattern is:
-
-```http
-Set-Cookie: __Host-session=RANDOM_TOKEN; Path=/; Secure; HttpOnly; SameSite=Lax
-```
-
-The application should also:
-
-- Use HTTPS for the entire site.
-- Generate unpredictable session tokens.
-- Keep sensitive session data on the server.
-- Rotate session IDs after authentication.
-- Set suitable expiry times.
-- Invalidate the server-side session on logout.
-- Avoid putting passwords or other secrets in cookies.
-- Avoid using cookies as a large storage system.
-- Check browser behavior for the browsers the application supports.
-
 ---
 
 ## 9. Web Cache
 
 ### 9.1 What Is a Web Cache?
 
-A **web cache** stores copies of HTTP responses so they can be reused later.
-
-For example, when a browser downloads a logo image, it may store a copy. When the user visits another page that needs the same image, the browser may use the cached copy instead of downloading it again.
+A **web cache** stores copies of HTTP responses so they can be reused later. For example, when a browser downloads a logo image, it may store a copy. When the user visits another page that needs the same image, the browser may use the cached copy instead of downloading it again.
 
 An HTTP cache stores response information and decides whether a stored response can be reused. Caches can exist in the browser, in a proxy, in a CDN, or in other parts of the delivery path.
 
@@ -1021,7 +513,7 @@ Examples:
 
 - HTML pages, depending on cache rules.
 - CSS and JavaScript files.
-- Images, fonts, and other static resources.
+- Images, fonts and other static resources.
 
 Benefits:
 
@@ -1044,120 +536,13 @@ Examples include:
 
 Shared caches need careful rules. They must not accidentally return one user's private response to another user.
 
-### 9.3 How HTTP Caching Works
-
-A simplified flow is:
-
-1. The browser requests a resource.
-2. The browser checks whether it has a usable cached response.
-3. If the response is fresh, the browser may use it without contacting the origin server.
-4. If it is stale or needs validation, the browser sends a conditional request.
-5. The server may confirm that the cached version is still valid or send a new version.
-
-### 9.4 Important Cache Headers
-
-#### `Cache-Control`
-
-`Cache-Control` gives caching instructions.
-
-Examples:
-
-```http
-Cache-Control: max-age=3600
-Cache-Control: public, max-age=3600
-Cache-Control: private, max-age=300
-Cache-Control: no-cache
-Cache-Control: no-store
-Cache-Control: public, max-age=3600, s-maxage=86400
-```
-
-Common directives:
-
-| Directive | Meaning |
-|---|---|
-| `max-age=3600` | A response can be considered fresh for 3600 seconds. |
-| `public` | The response may be stored by shared caches, subject to the other caching rules. |
-| `private` | The response is intended for a private cache, not a shared cache. |
-| `no-cache` | The cache may store the response, but must validate it before reusing it. |
-| `no-store` | Caches must not store the response. |
-| `s-maxage=86400` | Gives a freshness lifetime for shared caches. It overrides `max-age` for those caches. |
-| `must-revalidate` | Once stale, the response must be successfully validated before reuse. |
-
-**Important difference:** `no-cache` does not mean "never store." It means the stored response must be validated before reuse. `no-store` is the directive used to prevent storage.
-
-#### `Expires`
-
-`Expires` gives a date and time after which a response is stale. `Cache-Control: max-age` is generally preferred for modern applications.
-
-#### `ETag`
-
-An `ETag` is a validator for a particular version of a resource.
-
-Example response:
-
-```http
-HTTP/1.1 200 OK
-ETag: "version-123"
-Cache-Control: max-age=60
-
-```
-
-When the cached response needs validation, the browser may send:
-
-```http
-GET /style.css HTTP/1.1
-Host: example.com
-If-None-Match: "version-123"
-
-```
-
-If the resource has not changed, the server can return:
-
-```http
-HTTP/1.1 304 Not Modified
-ETag: "version-123"
-
-```
-
-`304 Not Modified` tells the browser to reuse its stored response body. The server avoids sending the full resource again.
-
-#### `Last-Modified` and `If-Modified-Since`
-
-A server can send `Last-Modified` with the time when a resource was last changed.
-
-The browser can later send that date in `If-Modified-Since`. If the resource has not changed, the server may return `304 Not Modified`.
-
-#### `Vary`
-
-`Vary` tells a cache that certain request headers affect the response representation.
-
-For example:
-
-```http
-Vary: Accept-Encoding
-```
-
-This means a cache may need separate stored versions for different `Accept-Encoding` request values.
-
-### 9.5 Why Is Web Caching Important?
-
-- **Speed:** Cached resources can be delivered quickly.
-- **Lower bandwidth:** Repeated downloads can be avoided.
-- **Less server work:** The origin server does not need to generate every response again.
-- **Scalability:** A website can serve more users with the same origin capacity.
-- **Better user experience:** Pages may load faster, especially on repeat visits.
-
-Caching must be configured carefully. User-specific pages, account details, and sensitive responses should not be shared through public caches unless the application explicitly supports that behavior.
-
 ---
 
 ## 10. Proxy Server
 
 ### 10.1 What Is a Proxy Server?
 
-A **proxy server** is an intermediary. It receives a request from one side and forwards it to another side.
-
-The word proxy means that the server acts on behalf of another system.
+A **proxy server** is an intermediary that receives a request from one side and forwards it to another side. The word proxy means that the server acts on behalf of another system.
 
 There are two main types:
 
@@ -1468,239 +853,139 @@ These types do not mean that one HTTPS connection uses stronger encryption than 
 
 ---
 
-## 16. Full HTTPS / TLS Connection Process
+# IP Address and Port Address
 
-The process below describes a simplified **TLS 1.3** handshake using certificate-based server authentication and ephemeral key agreement. Real connections may use session resumption or other options.
+## 1. What Is an IP Address?
 
-### Step 1: The User Opens an HTTPS URL
+An **IP (Internet Protocol) address** is a numerical address used to identify a device or network interface and route data across a network.
 
-The browser receives a URL such as:
-
-```text
-https://www.example.com
-```
-
-The browser needs to connect to the server for `www.example.com` using HTTPS.
-
-### Step 2: DNS Resolution
-
-The browser or operating system resolves the hostname to an IP address using DNS, unless a usable result is already available in a cache.
-
-### Step 3: Establish the Transport Connection
-
-For HTTP/1.1 and HTTP/2 over TLS, the browser normally establishes a TCP connection first. TLS then runs over that connection.
-
-For HTTP/3, the browser uses QUIC over UDP. QUIC integrates the TLS 1.3 handshake into its connection setup.
-
-### Step 4: ClientHello
-
-The browser sends a TLS message called `ClientHello`.
-
-It includes information such as:
-
-- Supported TLS versions.
-- Supported cryptographic options.
-- A random value.
-- Key-share information for key agreement.
-- Extensions, which may include the intended hostname through SNI.
-
-The browser is telling the server which security options it can use.
-
-### Step 5: ServerHello
-
-The server selects compatible security parameters and sends `ServerHello`.
-
-It provides its key-share information. Together, the client's and server's key shares allow both sides to calculate shared secret material using a key-agreement algorithm such as ephemeral Diffie-Hellman (for example, ECDHE).
-
-The shared secret is not sent directly across the network.
-
-### Step 6: Server Sends Its Certificate and Proof
-
-The server sends TLS handshake messages that include:
-
-- `EncryptedExtensions` — negotiated connection extensions.
-- `Certificate` — the server's certificate chain.
-- `CertificateVerify` — a digital signature that proves the server has the private key corresponding to the certificate's public key.
-- `Finished` — a message that verifies the handshake so far and confirms key possession.
-
-In TLS 1.3, handshake messages after `ServerHello` are encrypted using keys derived during the handshake.
-
-### Step 7: Browser Validates the Certificate
-
-The browser checks several things:
-
-1. **Trusted chain:** Does the certificate chain lead to a trusted root CA?
-2. **Hostname:** Does the certificate cover the requested hostname, such as `www.example.com`?
-3. **Validity:** Is the certificate currently within its valid time period?
-4. **Signatures:** Are the certificate signatures valid?
-5. **Usage and constraints:** Are the certificate's key usage and other constraints suitable for server authentication?
-6. **Revocation and policy checks:** Does the browser's certificate-validation process find a relevant revocation or policy problem?
-
-If important checks fail, the browser may show a security warning or stop the connection.
-
-### Step 8: Shared Session Keys Are Derived
-
-The browser and server use the key-agreement result and the handshake transcript to derive cryptographic secrets.
-
-They independently derive matching traffic keys. These keys are used to encrypt and authenticate data in each direction.
-
-Modern TLS uses symmetric encryption for application data because it is efficient. Key derivation and authentication establish the secure connection.
-
-### Step 9: Client Finished
-
-The browser sends its `Finished` message. This confirms that it has completed the handshake and derived the correct handshake secrets.
-
-The server verifies the message.
-
-### Step 10: Encrypted HTTP Communication Begins
-
-The TLS connection is ready for application data.
-
-The browser sends HTTP requests through the protected connection. The server sends HTTP responses through the same protected connection.
-
-The application data is encrypted and integrity-protected using the negotiated traffic keys and authenticated-encryption algorithms.
-
-### 16.1 Simplified TLS 1.3 Flow
+Example IPv4 address:
 
 ```text
-Browser / Client                         Web Server
-       |                                      |
-       |---------- ClientHello -------------->|
-       |                                      |
-       |<--------- ServerHello ---------------|
-       |<------ EncryptedExtensions ----------|
-       |<--------- Certificate ---------------|
-       |<------ CertificateVerify ------------|
-       |<----------- Finished ----------------|
-       |                                      |
-       |  Browser validates certificate       |
-       |  and derives traffic keys             |
-       |                                      |
-       |------------ Finished --------------->|
-       |                                      |
-       |<==== Encrypted HTTP requests ========>|
-       |<==== Encrypted HTTP responses =======>|
-       |                                      |
+192.0.2.10
 ```
 
-This is a learning diagram, not a complete packet-level trace. Some handshake messages and connection steps can vary depending on TLS version, transport, and session-resumption settings.
+When a browser contacts a website, it needs an IP address to know where to send the network packets.
 
-### 16.2 How HTTPS Makes Communication Secure
+**Why is an IP address important?**
+- It helps identify the destination on a network.
+- Routers use IP addresses to forward packets.
+- DNS helps browsers find the IP address linked to a domain name.
 
-The complete security idea is:
+## 2. What Is a Port Number?
 
-1. The certificate helps the browser authenticate the server's domain identity.
-2. The key-agreement process allows the browser and server to derive shared secret keys without sending those secrets directly.
-3. TLS derives separate traffic keys for communication in each direction.
-4. Symmetric authenticated encryption protects HTTP data from being read or modified in transit.
-5. Handshake verification helps detect tampering with the handshake itself.
+A **port number** identifies a service or application running on a device.
 
-This protects the connection against common network attacks such as passive eavesdropping and unauthorized message modification.
+An IP address helps find the server. A port number helps reach the correct service on that server.
 
----
+Common ports:
 
-## 17. Additional HTTPS Concepts
+| Port | Common use |
+|---|---|
+| 80 | HTTP |
+| 443 | HTTPS |
+| 22 | SSH |
+| 53 | DNS |
 
-### 17.1 HTTPS Does Not Mean the Website Is Trustworthy
-
-A valid certificate means that the browser has verified the domain identity according to its certificate rules. It does not mean:
-
-- The business is honest.
-- The website has no malware.
-- Every download is safe.
-- The website will protect data after it reaches the server.
-- The server itself has not been compromised.
-
-Users should still check the domain name and be careful with suspicious links.
-
-### 17.2 Mixed Content
-
-Mixed content occurs when an HTTPS page loads some resources over insecure HTTP.
+Port numbers are 16-bit values, from 0 to 65535. The commonly used ranges are 0–1023 (system or well-known ports), 1024–49151 (registered ports), and 49152–65535 (dynamic or private ports). [IANA/RFC 6335](https://www.rfc-editor.org/rfc/rfc6335)
 
 For example:
 
 ```text
-Main page: https://example.com
-Image:     http://example.com/image.png
+https://example.com:443/products
 ```
 
-The HTTP resource is not protected by the page's TLS connection. Browsers may block or upgrade some mixed-content requests depending on the resource type and browser policy.
+- `example.com` is the hostname.
+- DNS resolves the hostname to an IP address.
+- `443` is the destination port for HTTPS.
+- If the port is omitted, the browser normally uses the default port for the scheme: 80 for HTTP and 443 for HTTPS.
 
-Websites should load all resources securely.
+**Remember:** An IP address identifies the network destination. A port identifies the service at that destination.
 
-### 17.3 HSTS
+## 3. How Does DNS Find the IP Address?
 
-**HSTS (HTTP Strict Transport Security)** is a response policy that tells a browser to use HTTPS for future visits to a site for a specified period.
+DNS (Domain Name System) translates a domain name into an IP address.
+
+The main records used for this are:
+- **A record:** maps a hostname to an IPv4 address.
+- **AAAA record:** maps a hostname to an IPv6 address.
 
 Example:
 
-```http
-Strict-Transport-Security: max-age=31536000; includeSubDomains
+```text
+www.example.com
+       |
+       | DNS lookup
+       v
+A record    -> 192.0.2.10
+AAAA record -> 2001:db8::10
 ```
 
-This example asks the browser to remember the HTTPS-only rule for one year and to apply it to subdomains.
+A domain can have more than one IP address. DNS does not normally provide the website's port in an A or AAAA record. The browser gets the port from the URL or uses the default port.
 
-HSTS helps prevent certain downgrade and accidental HTTP connection problems. It does not replace a valid TLS certificate.
+## 4. Static IP and Dynamic IP
 
-### 17.4 TLS Termination at a CDN or Reverse Proxy
+### Static IP
 
-A website may use a CDN or reverse proxy to handle HTTPS.
+A **static IP address** is intended to stay the same over time. It is configured or assigned as a stable address.
 
-In that design:
+It is useful for servers and services that need a predictable address.
 
-1. The browser establishes a TLS connection to the CDN or reverse proxy.
-2. The CDN or proxy decrypts the incoming request at its edge.
-3. It forwards the request to the origin server.
-4. The edge-to-origin connection may use another TLS connection, depending on configuration.
+### Dynamic IP
 
-The encryption is therefore applied to each connection segment. For sensitive systems, the connection from the CDN or proxy to the origin should also be protected and correctly authenticated.
+A **dynamic IP address** is assigned automatically and may change over time. For example, a router or server may receive an address through DHCP.
 
----
+Dynamic addresses are common for home internet connections and many networks.
 
-## 18. Quick Revision
+### What happens if a server's IP address changes?
 
-| Topic | Key point |
-|---|---|
-| HTTP | An application-layer request-response protocol. |
-| URL | Identifies a resource and how to access it. |
-| HTTP request | Sent by a client to ask for an action or resource. |
-| HTTP response | Sent by a server with the result of the request. |
-| HTTP method | Describes the purpose of a request, such as `GET` or `POST`. |
-| Status code | Three-digit result code, grouped into `1xx` through `5xx`. |
-| Cookie | Small browser-stored data sent with matching requests. |
-| Cookie jar | The browser's managed collection of cookies. |
-| Browser cookie store | Browser-profile storage for cookie records. |
-| Server session store | Server-side session data identified by a session token. |
-| Web cache | Stores reusable responses to reduce repeated downloads. |
-| Forward proxy | Acts on behalf of clients. |
-| Reverse proxy | Acts in front of origin servers. |
-| CDN | Uses distributed edge servers to deliver content close to users. |
-| HTTPS | HTTP protected by TLS. |
-| TLS certificate | Connects a domain identity with a public key. |
-| Certificate Authority | Trusted organization that issues and signs certificates. |
-| TLS handshake | Negotiates security parameters, authenticates the server, and derives traffic keys. |
+A website normally uses DNS, so users do not need to remember its IP address.
 
----
+If the server's public IP changes:
 
-## 19. References and Further Reading
+1. Update the domain's DNS A record, or AAAA record if its IPv6 address changed.
+2. Wait for DNS caches to refresh according to the record's TTL (Time to Live).
+3. After caches refresh, clients will use the new address.
 
-The following sources provide standards and browser documentation for deeper study:
+Some users may temporarily reach the old address because DNS answers can remain cached until their TTL expires.
 
-1. [MDN — Overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
-2. [IETF RFC 9110 — HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
-3. [IETF RFC 9112 — HTTP/1.1 Message Syntax](https://www.rfc-editor.org/rfc/rfc9112.html)
-4. [MDN — HTTP Request Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods)
-5. [IETF RFC 9111 — HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html)
-6. [MDN — Using HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)
-7. [MDN — `Set-Cookie` Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie)
-8. [MDN — Third-Party Cookies](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Third-party_cookies)
-9. [MDN — Proxy Servers and Tunneling](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling)
-10. [Cloudflare — CDN Reference Architecture](https://developers.cloudflare.com/reference-architecture/architectures/cdn/)
-11. [Mozilla — Secure Website Certificates](https://support.mozilla.org/en-US/kb/secure-website-certificate)
-12. [IETF RFC 9846 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc9846.html)
-13. [Chromium — User Data Directory](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/user_data_dir.md)
-14. [Mozilla — Firefox Profile Data Files](https://support.mozilla.org/en-US/kb/about-your-important-data-and-their-files)
-15. [MDN — URL API and URL Components](https://developer.mozilla.org/en-US/docs/Web/API/URL)
-16. [MDN — Third-Party Cookies and Partitioned Cookies (CHIPS)](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Third-party_cookies/Partitioned_cookies)
+A server can avoid this problem by using a static public IP, a load balancer with a stable address, or Dynamic DNS that updates DNS when the address changes.
 
+## 5. Can Multiple Websites Use the Same IP Address?
 
+**Yes.** Many websites can share one public IP address.
+
+A web server or reverse proxy can identify the requested website by its hostname. For HTTPS, the browser normally also sends the hostname during the TLS handshake using **SNI** (Server Name Indication).
+
+Example:
+
+```text
+                 One public IP
+                 192.0.2.10
+                      |
+             Web server / proxy
+                /     |     \
+               /      |      \
+              v       v       v
+        site-a.com site-b.com site-c.com
+```
+
+The websites can all use port 443. The server uses the hostname to send each request to the correct website.
+
+A single server can also run different services on different ports. For example, a web application might listen on port 443 while an administration service listens on another port.
+
+## 6. IPv4 vs IPv6
+
+IPv4 and IPv6 are two versions of the Internet Protocol.
+
+| Feature | IPv4 | IPv6 |
+|---|---|---|
+| Address size | 32 bits | 128 bits |
+| Format | Four decimal numbers separated by dots | Hexadecimal groups separated by colons |
+| Example | `192.0.2.10` | `2001:db8::10` |
+| Address capacity | About 4.3 billion addresses | A vastly larger address space |
+| Common issue | Limited address supply; NAT is widely used | Designed with a much larger address space |
+
+IPv4 addresses are 32 bits long. IPv6 addresses are 128 bits long. IPv6 provides a much larger address space. [IANA](https://www.iana.org/numbers) [RIPE NCC](https://www.ripe.net/about-us/press-centre/understanding-ip-addressing/)
+
+Both versions are used on the Internet today. IPv6 does not automatically make a connection faster; its main benefit is the much larger address space and updated addressing design.
