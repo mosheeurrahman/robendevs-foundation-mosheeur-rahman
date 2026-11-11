@@ -1,0 +1,41 @@
+/* Card image: fixed height reserves space, so there's no layout shift */
+.card-image {
+  position: relative;
+  height: 200px;
+  background: #fafafa;
+}
+.card-image img {
+  object-fit: contain;
+}
+
+/* Details page main image */
+.main-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.main-image img {
+  object-fit: contain;
+}
+
+/* Thumbnails (now buttons) */
+.thumb {
+  padding: 0;
+  width: 70px;
+  height: 70px;
+  background: #fafafa;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.thumb.active {
+  border-color: #2563eb;
+}
